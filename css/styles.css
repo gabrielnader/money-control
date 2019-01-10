@@ -1,0 +1,26 @@
+header{
+    background-color: aquamarine;
+}
+
+.home-header{
+    height: 55vh;
+}
+
+.home-main{
+    height: 45vh;
+}
+
+h2{
+    font-weight: 800;
+}
+
+a,
+a:visited,
+a:active{
+    color: black;
+    text-decoration: none;
+}
+
+th{
+    font-weight: bold;
+}

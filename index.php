@@ -1,3 +1,8 @@
+<?php
+    require_once 'config/config.php';
+    require_once APP_ROOT . "/classes/Transaction.class.php";
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -22,7 +27,7 @@
 <body>
     <header class="d-flex flex-column justify-content-between home-header">
         <nav class="navbar navbar-expand-lg navbar-light">
-            <a class="navbar-brand" href="index.html">
+            <a class="navbar-brand" href="index.php">
                 <i class="fas fa-dollar-sign" style="font-size:3rem;"></i>
             </a>
             <button type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
@@ -39,7 +44,7 @@
             </div>
         </nav>
         <section class="text-center mb-4">
-            <h2>R$ <span id="saldo"></span></h2>
+            <h2>R$ <?php echo number_format(Transaction::getCurrentMoney(), 2, ',','.');?></h2>
             <span>SALDO</span>
         </section>
     </header>
@@ -55,7 +60,7 @@
             </div>
             <div class="col-6 text-center h-50 d-inline-block p-0">
                 <button class="btn w-100 h-100 bg-white">
-                    <a href="pay.html">
+                    <a href="pay.php">
                         <i class="fas fa-money-bill-alt" style="font-size:2.5rem;"></i>
                         <p>Pagar</p>
                     </a>
@@ -63,7 +68,7 @@
             </div>
             <div class="col-6 text-center h-50 d-inline-block p-0">
                 <button class="btn w-100 h-100 bg-white">
-                    <a href="history.html">
+                    <a href="history.php">
                         <i class="fas fa-history" style="font-size:2.5rem;"></i>
                         <p>Histórico</p>
                     </a>
@@ -71,7 +76,7 @@
             </div>
             <div class="col-6 text-center h-50 d-inline-block p-0">
                 <button class="btn w-100 h-100 bg-white">
-                    <a href="balance.html">
+                    <a href="balance.php">
                         <i class="fas fa-balance-scale" style="font-size:2.5rem;"></i>
                         <p>Saldo</p>
                     </a>

@@ -21,7 +21,7 @@
 <body>
     <header class="d-flex flex-column justify-content-between">
         <nav class="navbar navbar-expand-lg navbar-light">
-            <a class="navbar-brand" href="index.html">
+            <a class="navbar-brand" href="index.php">
                 <i class="fas fa-dollar-sign" style="font-size:3rem;"></i>
             </a>
             <button type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
@@ -37,8 +37,12 @@
                 </div>
             </div>
         </nav>
+        <?php
+            require_once 'config/config.php';
+            require_once APP_ROOT . "/classes/Transaction.class.php";
+        ?>
         <section class="text-center mb-4">
-            <h2>R$ <span id="saldo"></span></h2>
+            <h2>R$ <?php echo number_format(Transaction::getCurrentMoney(), 2, ',', '.');?></h2>
             <span>SALDO</span>
         </section>
     </header>
@@ -52,26 +56,18 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <?php
-                        require_once 'config/config.php';
-                        require_once APP_ROOT . "/classes/Transaction.class.php";
-                    ?>
                      <tr>
                         <td><?php echo Transaction::getMonthBalance(01, 2019)["month"]; ?></td>
-                        <td><?php echo Transaction::getMonthBalance(01, 2019)["balance"]; ?></td>
+                        <td>R$ <?php echo number_format(Transaction::getMonthBalance(01, 2019)["balance"], 2, ',', '.'); ?></td>
+                    </tr>
+                    <!-- <tr>
+                        <td><?php //echo Transaction::getMonthBalance(02, 2019)["month"]; ?></td>
+                        <td><?php //echo Transaction::getMonthBalance(02, 2019)["balance"]; ?></td>
                     </tr>
                     <tr>
-                        <td><?php echo Transaction::getMonthBalance(12, 2018)["month"]; ?></td>
-                        <td><?php echo Transaction::getMonthBalance(12, 2018)["balance"]; ?></td>
-                    </tr>
-                    <tr>
-                        <td><?php echo Transaction::getMonthBalance(11, 2018)["month"]; ?></td>
-                        <td><?php echo Transaction::getMonthBalance(11, 2018)["balance"]; ?></td>
-                    </tr>
-                    <tr>
-                        <td><?php echo Transaction::getMonthBalance(10, 2018)["month"]; ?></td>
-                        <td><?php echo Transaction::getMonthBalance(10, 2018)["balance"]; ?></td>
-                    </tr>
+                        <td><?php //echo Transaction::getMonthBalance(03, 2019)["month"]; ?></td>
+                        <td><?php //echo Transaction::getMonthBalance(03, 2019)["balance"]; ?></td>
+                    </tr> -->
                 </tbody>
             </table>
         </div>

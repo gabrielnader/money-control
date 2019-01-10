@@ -21,7 +21,7 @@
 <body>
     <header class="d-flex flex-column justify-content-between">
         <nav class="navbar navbar-expand-lg navbar-light">
-            <a class="navbar-brand" href="index.html">
+            <a class="navbar-brand" href="index.php">
                 <i class="fas fa-dollar-sign" style="font-size:3rem;"></i>
             </a>
             <button type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
@@ -37,8 +37,13 @@
                 </div>
             </div>
         </nav>
+        <?php
+            require_once 'config/config.php';
+            require_once APP_ROOT . "/classes/DB.class.php";
+            require_once APP_ROOT . "/classes/Transaction.class.php";
+        ?>
         <section class="text-center mb-4">
-            <h2>R$ <span id="saldo"></span></h2>
+            <h2>R$ <?php echo number_format(Transaction::getCurrentMoney(), 2, ',', '.');?></h2>
             <span>SALDO</span>
         </section>
     </header>
@@ -53,11 +58,7 @@
                     </tr>
                 </thead>
                 <tbody id="extrato">
-                    <?php
-                        require_once 'config/config.php';
-                        require_once APP_ROOT . "/classes/DB.class.php";
-                        require_once APP_ROOT . "/classes/Transaction.class.php";
-                        
+                    <?php    
                         $db = new DB();
                         $history = $db->query("SELECT `id` FROM `transaction` WHERE `at` BETWEEN DATE_SUB(NOW(), INTERVAL 30 DAY) AND NOW() ORDER BY `id` DESC");
                         while($row = $history->fetch()){
@@ -65,15 +66,15 @@
                             $date = $transaction->getDay();
                             $des = $transaction->getDescription();
                             $value = $transaction->getValue();
-                            if($transaction->getType() == 0){
-                                echo '<tr class="text-success">';
-                            }else{
+                            if(!$transaction->getType() == 0){
                                 echo '<tr class="text-danger">';
+                            }else{
+                                echo '<tr>';
                             }
                             ?>
                                     <td><?php echo $transaction->getDay(); ?></td>
                                     <td><?php echo $transaction->getDescription(); ?></td>
-                                    <td>R$ <?php echo $transaction->getValue(); ?></td>
+                                    <td>R$<?php echo number_format($transaction->getValue(), 2, ',', '.'); ?></td>
                             </tr>
                         <?php 
                         }

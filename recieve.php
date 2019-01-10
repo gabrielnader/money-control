@@ -19,6 +19,19 @@
 </head>
 
 <body>
+    <?php
+        if(isset($_POST["valorReceber"])){
+            require_once 'config/config.php';
+            require_once APP_ROOT . '/classes/Transaction.class.php';
+            $transaction = Transaction::newTransaction($_POST["valorReceber"], $_POST["dataReceber"], $_POST["descricaoReceber"], 0);
+
+    ?>
+    <!-- ADD MENSAGEM DE ADD -->
+        <div class="alert-success">
+            saldo adicionado!
+        </div>
+    <?php } ?>
+
     <header class="d-flex flex-column justify-content-between home-header">
         <nav class="navbar navbar-expand-lg navbar-light">
             <a class="navbar-brand" href="index.html">
@@ -45,9 +58,9 @@
     <main>
         <div class="container">
             <h2 class="mt-3">Receber valor</h2>
-            <form class="mt-3" action="">
+            <form class="mt-3" action="recieve.php" method="post">
                 <div class="form-group">
-                    <input type="date" class="form-control" name="dataPagar">
+                    <input type="date" class="form-control" name="dataReceber">
                 </div>
                 <div class="form-group">
                     <input class="form-control" type="number" name="valorReceber" id="valorReceberInput" placeholder="Valor">

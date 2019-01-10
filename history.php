@@ -30,10 +30,10 @@
             </button>
             <div class="collapse navbar-collapse mt-2" id="navbarNavAltMarkup">
                 <div class="navbar-nav text-center">
-                    <a class="nav-item nav-link" href="recieve.html">Receber</a>
-                    <a class="nav-item nav-link" href="pay.html">Pagar</a>
-                    <a class="nav-item nav-link" href="history.html">Histórico</a>
-                    <a class="nav-item nav-link" href="balance.html">Saldo</a>
+                    <a class="nav-item nav-link" href="recieve.php">Receber</a>
+                    <a class="nav-item nav-link" href="pay.php">Pagar</a>
+                    <a class="nav-item nav-link" href="history.php">Histórico</a>
+                    <a class="nav-item nav-link" href="balance.php">Saldo</a>
                 </div>
             </div>
         </nav>
@@ -47,31 +47,37 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th>Mês</th>
-                        <th>Saldo</th>
+                        <th>Data</th>
+                        <th>Descrição</th>
+                        <th>Valor</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                        <td>Janeiro</td>
-                        <td>R$ 33,00</td>
-                    </tr>
-                    <tr class="text-danger">
-                        <td>Fevereiro</td>
-                        <td>R$ -140,32</td>
-                    </tr>
-                    <tr>
-                        <td>Março</td>
-                        <td>R$ 23,50</td>
-                    </tr>
-                    <tr class="text-danger">
-                        <td>Abril</td>
-                        <td>R$ -50,00</td>
-                    </tr>
-                    <tr>
-                        <td>Maio</td>
-                        <td>R$ 340,00</td>
-                    </tr>
+                <tbody id="extrato">
+                    <?php
+                        require_once 'config/config.php';
+                        require_once APP_ROOT . "/classes/DB.class.php";
+                        require_once APP_ROOT . "/classes/Transaction.class.php";
+                        
+                        $db = new DB();
+                        $history = $db->query("SELECT `id` FROM `transaction` WHERE `at` BETWEEN DATE_SUB(NOW(), INTERVAL 30 DAY) AND NOW() ORDER BY `id` DESC");
+                        while($row = $history->fetch()){
+                            $transaction = new Transaction($row["id"]);
+                            $date = $transaction->getDay();
+                            $des = $transaction->getDescription();
+                            $value = $transaction->getValue();
+                            if($transaction->getType() == 0){
+                                echo '<tr class="text-success">';
+                            }else{
+                                echo '<tr class="text-danger">';
+                            }
+                            ?>
+                                    <td><?php echo $transaction->getDay(); ?></td>
+                                    <td><?php echo $transaction->getDescription(); ?></td>
+                                    <td>R$ <?php echo $transaction->getValue(); ?></td>
+                            </tr>
+                        <?php 
+                        }
+                    ?>
                 </tbody>
             </table>
         </div>

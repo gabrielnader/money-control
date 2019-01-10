@@ -30,10 +30,10 @@
             </button>
             <div class="collapse navbar-collapse mt-2" id="navbarNavAltMarkup">
                 <div class="navbar-nav text-center">
-                    <a class="nav-item nav-link" href="recieve.html">Receber</a>
-                    <a class="nav-item nav-link" href="pay.html">Pagar</a>
-                    <a class="nav-item nav-link" href="history.html">Histórico</a>
-                    <a class="nav-item nav-link" href="balance.html">Saldo</a>
+                    <a class="nav-item nav-link" href="recieve.php">Receber</a>
+                    <a class="nav-item nav-link" href="pay.php">Pagar</a>
+                    <a class="nav-item nav-link" href="history.php">Histórico</a>
+                    <a class="nav-item nav-link" href="balance.php">Saldo</a>
                 </div>
             </div>
         </nav>
@@ -47,26 +47,30 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th>Data</th>
-                        <th>Descrição</th>
-                        <th>Valor</th>
+                        <th>Mês</th>
+                        <th>Saldo</th>
                     </tr>
                 </thead>
-                <tbody id="extrato">
-                    <tr class="text-danger">
-                        <td>15/01</td>
-                        <td>Almoço</td>
-                        <td>R$ -32,00</td>
-                    </tr>
-                    <tr class="text-danger">
-                        <td>15/01</td>
-                        <td>Estacionamento</td>
-                        <td>R$ -12,00</td>
+                <tbody>
+                    <?php
+                        require_once 'config/config.php';
+                        require_once APP_ROOT . "/classes/Transaction.class.php";
+                    ?>
+                     <tr>
+                        <td><?php echo Transaction::getMonthBalance(01, 2019)["month"]; ?></td>
+                        <td><?php echo Transaction::getMonthBalance(01, 2019)["balance"]; ?></td>
                     </tr>
                     <tr>
-                        <td>15/01</td>
-                        <td>Cirurgia COC</td>
-                        <td>R$ 400,00</td>
+                        <td><?php echo Transaction::getMonthBalance(12, 2018)["month"]; ?></td>
+                        <td><?php echo Transaction::getMonthBalance(12, 2018)["balance"]; ?></td>
+                    </tr>
+                    <tr>
+                        <td><?php echo Transaction::getMonthBalance(11, 2018)["month"]; ?></td>
+                        <td><?php echo Transaction::getMonthBalance(11, 2018)["balance"]; ?></td>
+                    </tr>
+                    <tr>
+                        <td><?php echo Transaction::getMonthBalance(10, 2018)["month"]; ?></td>
+                        <td><?php echo Transaction::getMonthBalance(10, 2018)["balance"]; ?></td>
                     </tr>
                 </tbody>
             </table>

@@ -43,10 +43,10 @@
             </button>
             <div class="collapse navbar-collapse mt-2" id="navbarNavAltMarkup">
                 <div class="navbar-nav text-center">
-                    <a class="nav-item nav-link" href="recieve.html">Receber</a>
-                    <a class="nav-item nav-link" href="pay.html">Pagar</a>
-                    <a class="nav-item nav-link" href="history.html">Histórico</a>
-                    <a class="nav-item nav-link" href="balance.html">Saldo</a>
+                    <a class="nav-item nav-link" href="recieve.php">Receber</a>
+                    <a class="nav-item nav-link" href="pay.php">Pagar</a>
+                    <a class="nav-item nav-link" href="history.php">Histórico</a>
+                    <a class="nav-item nav-link" href="balance.php">Saldo</a>
                 </div>
             </div>
         </nav>

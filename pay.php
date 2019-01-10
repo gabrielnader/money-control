@@ -19,6 +19,18 @@
 </head>
 
 <body>
+    <?php
+        if(isset($_POST["valorPagar"])){
+            require_once 'config/config.php';
+            require_once APP_ROOT . '/classes/Transaction.class.php';
+            $transaction = Transaction::newTransaction($_POST["valorPagar"], $_POST["dataPagar"], $_POST["descricaoPagar"], 1);
+
+    ?>
+    <!-- ADD MENSAGEM DE remove -->
+        <div class="alert alert-danger">
+            saldo removido!
+        </div>
+    <?php } ?>
     <header class="d-flex flex-column justify-content-between home-header">
         <nav class="navbar navbar-expand-lg navbar-light">
             <a class="navbar-brand" href="index.html">
@@ -30,10 +42,10 @@
             </button>
             <div class="collapse navbar-collapse mt-2" id="navbarNavAltMarkup">
                 <div class="navbar-nav text-center">
-                    <a class="nav-item nav-link" href="recieve.html">Receber</a>
-                    <a class="nav-item nav-link" href="pay.html">Pagar</a>
-                    <a class="nav-item nav-link" href="history.html">Histórico</a>
-                    <a class="nav-item nav-link" href="balance.html">Saldo</a>
+                    <a class="nav-item nav-link" href="recieve.php">Receber</a>
+                    <a class="nav-item nav-link" href="pay.php">Pagar</a>
+                    <a class="nav-item nav-link" href="history.php">Histórico</a>
+                    <a class="nav-item nav-link" href="balance.php">Saldo</a>
                 </div>
             </div>
         </nav>
@@ -45,7 +57,7 @@
     <main>
         <div class="container">
             <h2 class="mt-3">Pagar valor</h2>
-            <form class="mt-3" action="">
+            <form class="mt-3" action="pay.php" method="post">
                 <div class="form-group">
                     <input type="date" class="form-control" name="dataPagar">
                 </div>

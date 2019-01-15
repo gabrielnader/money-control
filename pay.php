@@ -7,7 +7,12 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 
-    <link rel="icon" type="images/png" href="images/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
 
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
@@ -66,7 +71,7 @@
                     <input type="date" class="form-control" name="dataPagar">
                 </div>
                 <div class="form-group">
-                    <input type="number" class="form-control" name="valorPagar" id="valorPagarInput" placeholder="Valor">
+                    <input type="number" class="form-control" name="valorPagar" id="valorPagarInput" placeholder="Valor" step="0.10">
                 </div>
                 <div class="form-group">
                     <input type="text" class="form-control" name="descricaoPagar" id="descricaoPagarInput" placeholder="Descrição">

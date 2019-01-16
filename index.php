@@ -35,7 +35,7 @@
             <a class="navbar-brand" href="index.php">
                 <i class="fas fa-dollar-sign" style="font-size:3rem;"></i>
             </a>
-            <button type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
+            <button class="bg-transparent border-0" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
                 aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon" style="font-size:2rem;"></span>
             </button>
